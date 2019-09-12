@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistemaVenta.Logica;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,19 @@ namespace SistemaVenta.Presentacion
 {
     public partial class frmLogin : Form
     {
+        UsuarioController usuario = new UsuarioController();
+
         public frmLogin()
         {
             InitializeComponent();
+        }
+
+        private void btnAceptar_Click(object sender, EventArgs e)
+        {
+            if (usuario.AutenticarUsuario(cuentaTextBox.Text, passwordTextBox.Text))
+                MessageBox.Show("Usuario encontrado");
+            else
+                MessageBox.Show("Usuario NO encontrado");
         }
     }
 }
